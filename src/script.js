@@ -12,7 +12,8 @@ import {
   continueGame,
   restartLevel,
   nextLevel,
-  goHome
+  goHome,
+  restartGameFromBeginning
 } from './gameController.js';
 
 /* -----------------------------------
@@ -30,9 +31,22 @@ function bindEvents() {
     dom.continueButton.addEventListener('click', continueGame);
   }
 
+  // Restart Game button event
+  if (dom.restartGameButton) {
+    dom.restartGameButton.addEventListener('click', () => {
+      const { restartGame } = require('./gameController.js');
+      restartGame();
+    });
+  }
+
   // Home button event (during gameplay)
   if (dom.homeBtn) {
     dom.homeBtn.addEventListener('click', goHome);
+  }
+
+  // Restart Game button event
+  if (dom.restartGameBtn) {
+    dom.restartGameBtn.addEventListener('click', restartGameFromBeginning);
   }
 
   // Restart modal events

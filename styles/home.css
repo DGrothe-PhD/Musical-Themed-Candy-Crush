@@ -74,7 +74,7 @@ h1 {
     box-shadow: 0 2px 8px rgba(92, 108, 231, 0.1);
 }
 
-#playBtn, #howToPlayBtn {
+#playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
     background-color: slateblue;
     border: none;
     color: white;
@@ -86,7 +86,42 @@ h1 {
     width: 100%;
     max-width: 280px;
     border-radius: 8px;
-    margin: 0 auto;
+    margin: 0 auto 12px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+#playBtn:hover, #howToPlayBtn:hover, #continueBtn:hover, #restartGameBtn:hover {
+    background-color: #6854b8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#playBtn:active, #howToPlayBtn:active, #continueBtn:active, #restartGameBtn:active {
+    transform: translateY(0);
+}
+
+#continueBtn {
+    background-color: #48bb78;
+}
+
+#continueBtn:hover {
+    background-color: #38a169;
+}
+
+#restartGameBtn {
+    background-color: #e53e3e;
+}
+
+#restartGameBtn:hover {
+    background-color: #c53030;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#restartGameBtn:active {
+    transform: translateY(0);
 }
 
 @media (min-width: 768px) {

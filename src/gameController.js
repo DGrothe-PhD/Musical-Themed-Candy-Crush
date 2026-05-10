@@ -57,13 +57,29 @@ export function showMenu() {
     }
   }
   
-  // Show/hide continue button based on saved progress
+  // Show/hide continue button, restart button, and play button based on saved progress
   const savedProgress = loadGameProgress();
-  if (dom.continueButton) {
-    if (savedProgress) {
+  if (savedProgress) {
+    // If there's saved progress, show Continue and Restart, hide Play
+    if (dom.continueButton) {
       showElement(dom.continueButton);
-    } else {
+    }
+    if (dom.restartGameBtn) {
+      showElement(dom.restartGameBtn);
+    }
+    if (dom.playButton) {
+      hideElement(dom.playButton);
+    }
+  } else {
+    // If no saved progress, show Play and hide Continue and Restart
+    if (dom.continueButton) {
       hideElement(dom.continueButton);
+    }
+    if (dom.restartGameBtn) {
+      hideElement(dom.restartGameBtn);
+    }
+    if (dom.playButton) {
+      showElement(dom.playButton);
     }
   }
   
@@ -203,7 +219,6 @@ function setupBoardEvents() {
 ----------------------------------- */
 
 export function startGame() {
-  console.log('Play Game button clicked');
   hideGameOver();
 
   resetGame();
@@ -215,8 +230,13 @@ export function startGame() {
   startLevel(1);
 }
 
+export function restartGameFromBeginning() {
+  // Clear saved progress and start fresh
+  clearGameProgress();
+  startGame();
+}
+
 export function continueGame() {
-  console.log('Continue Game button clicked');
   const savedProgress = loadGameProgress();
   
   if (!savedProgress) {
@@ -232,13 +252,8 @@ export function continueGame() {
   gameState.totalScore = savedProgress.totalScore;
   gameState.movesLeft = savedProgress.movesLeft;
   gameState.timer = savedProgress.timer;
-  
-  // Restore objectives
-  if (savedProgress.objectives) {
-    for (const key in savedProgress.objectives) {
-      gameState[key] = savedProgress.objectives[key];
-    }
-  }
+  gameState.levelComplete = false;
+  gameState.timerActive = false;
   
   hideGameOver();
   showGameUI();
@@ -247,6 +262,16 @@ export function continueGame() {
   if (!config) {
     startGame();
     return;
+  }
+  
+  // Load objectives structure from config first
+  loadObjectives(config);
+  
+  // Then restore saved objective progress (overwrite with actual progress)
+  if (savedProgress.objectives) {
+    for (const key in savedProgress.objectives) {
+      gameState[key] = savedProgress.objectives[key];
+    }
   }
   
   // Restore board state
@@ -267,9 +292,20 @@ export function continueGame() {
 }
 
 function restoreBoardState(boardState, config) {
+  // Set game board reference
+  setGameBoardRef(dom.gameBoard);
+  
   if (!boardState || boardState.length === 0) {
     // No board state saved, generate new board
-    generateNewBoard();
+    generateBoard();
+    return;
+  }
+  
+  // Check if board has actual content
+  const hasContent = boardState.some(row => row.some(cell => cell !== ''));
+  
+  if (!hasContent) {
+    generateBoard();
     return;
   }
   
