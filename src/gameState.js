@@ -4,6 +4,7 @@ import { INITIAL_LIVES } from './constants.js';
 export let gameState = {
   movesLeft: 0,
   score: 0,
+  totalScore: 0,
   isResolving: false,
   level: 1,
   levelComplete: false,

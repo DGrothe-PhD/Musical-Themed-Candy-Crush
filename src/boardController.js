@@ -2,7 +2,7 @@
 import { swapCellContents, scoreForMatch, areAdjacent } from './game.js';
 import { getLevelConfig } from './levels.js';
 import { findMatches, dropAndRefill, hasPossibleMoves } from './board.js';
-import { updateMovesDisplay, updateScoreDisplay, updateObjectiveCounters } from './ui.js';
+import { updateMovesDisplay, updateScoreDisplay, updateObjectiveCounters, updateTotalScoreDisplay } from './ui.js';
 import { gameState } from './gameState.js';
 import { BOARD_SIZE, SYMBOLS } from './constants.js';
 import { getSafeSymbol } from './board.js';
@@ -10,12 +10,13 @@ import { wireUpCellEvents } from './events.js';
 import { boardEventHandlers } from './boardEventHandlers.js';
 
 // These will be injected from script.js
-let gameBoard, movesDisplay, scoreDisplay, restartContainer, nextLevelBtn, restartBtn;
+let gameBoard, movesDisplay, scoreDisplay, totalScoreDisplay, restartContainer, nextLevelBtn, restartBtn;
 
 export function setBoardControllerDeps(deps) {
   gameBoard = deps.gameBoard;
   movesDisplay = deps.movesDisplay;
   scoreDisplay = deps.scoreDisplay;
+  totalScoreDisplay = deps.totalScoreDisplay;
   restartContainer = deps.restartContainer;
   nextLevelBtn = deps.nextLevelBtn;
   restartBtn = deps.restartBtn;
@@ -127,7 +128,9 @@ async function resolveAllMatchesAndDrop() {
 
 function updateScoreAndObjectives(scoreGained, matchedCounts, config) {
   gameState.score += scoreGained;
+  gameState.totalScore += scoreGained;
   updateScoreDisplay(scoreDisplay, gameState.score);
+  updateTotalScoreDisplay(totalScoreDisplay, gameState.totalScore);
   config.objectives.forEach(obj => {
     const key = obj.label + 'Left';
     if (typeof gameState[key] !== 'number') gameState[key] = obj.count;

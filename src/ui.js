@@ -9,7 +9,8 @@ export function showMenuPage(heading, subtitle, menu, gameBoard, movesDisplay, s
     restartContainer,
     document.getElementById('game-board-container'),
     document.getElementById('score-moves-wrapper'),
-    document.getElementById('levelDisplay')
+    document.getElementById('levelDisplay'),
+    document.getElementById('totalScoreDisplay')
   ];
 
   elementsToShow.forEach(el => el?.classList.remove('hidden'));
@@ -26,6 +27,21 @@ export function updateMovesDisplay(movesDisplay, movesLeft) {
 
 export function updateScoreDisplay(scoreDisplay, score) {
   scoreDisplay.textContent = `Score: ${score}`;
+}
+
+export function updateTotalScoreDisplay(totalScoreDisplay, totalScore) {
+  if (totalScoreDisplay) {
+    totalScoreDisplay.textContent = `Total: ${totalScore}`;
+  }
+}
+
+export function updateHighScoreDisplay(highScoreDisplay, highScore) {
+  if (highScoreDisplay && highScore > 0) {
+    highScoreDisplay.textContent = `High Score: ${highScore}`;
+    highScoreDisplay.classList.remove('hidden');
+  } else if (highScoreDisplay) {
+    highScoreDisplay.classList.add('hidden');
+  }
 }
 
 

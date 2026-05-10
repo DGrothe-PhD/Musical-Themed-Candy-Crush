@@ -18,6 +18,8 @@ export const scoreDisplay = document.getElementById('scoreDisplay');
 export const timerDisplay = document.getElementById('timerDisplay');
 export const livesDisplay = document.getElementById('livesDisplay');
 export const levelDisplay = document.getElementById('levelDisplay');
+export const totalScoreDisplay = document.getElementById('totalScoreDisplay');
+export const highScoreDisplay = document.getElementById('highScoreDisplay');
 
 export const scoreMovesWrapper = document.getElementById('score-moves-wrapper');
 export const objectiveCounters = document.getElementById('objective-counters');

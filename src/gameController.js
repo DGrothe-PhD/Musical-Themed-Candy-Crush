@@ -6,8 +6,11 @@ import {
   updateObjectiveCounters,
   updateMovesDisplay,
   updateScoreDisplay,
-  updateLivesDisplay
+  updateLivesDisplay,
+  updateTotalScoreDisplay,
+  updateHighScoreDisplay
 } from './ui.js';
+import { getHighScore, saveHighScore } from './storage.js';
 import {
   getSafeSymbol,
   hasPossibleMoves,
@@ -39,6 +42,10 @@ export function showMenu() {
     dom.livesDisplay,
     dom.restartContainer
   );
+  
+  // Show high score on menu
+  const highScore = getHighScore();
+  updateHighScoreDisplay(dom.highScoreDisplay, highScore);
 }
 
 export function showGameUI() {
@@ -46,6 +53,7 @@ export function showGameUI() {
   hideElement(dom.heading);
   hideElement(dom.subtitle);
   hideElement(dom.menu);
+  hideElement(dom.highScoreDisplay);
 
   // Always show both the container and the board
   dom.gameBoardContainer.classList.remove('hidden');
@@ -57,6 +65,7 @@ export function showGameUI() {
   showElement(dom.timerDisplay);
   showElement(dom.livesDisplay);
   showElement(dom.objectiveCounters);
+  showElement(dom.totalScoreDisplay);
 
   hideElement(dom.restartLevelModal);
 }
@@ -77,6 +86,7 @@ export function resetGame() {
   gameState.level = 1;
   gameState.lives = INITIAL_LIVES;
   gameState.score = 0;
+  gameState.totalScore = 0;
 }
 
 function clearObjectives() {
@@ -173,6 +183,7 @@ function renderLevel(config) {
   updateMovesDisplay(dom.movesDisplay, gameState.movesLeft);
   updateScoreDisplay(dom.scoreDisplay, gameState.score);
   updateLivesDisplay(dom.livesDisplay, gameState.lives);
+  updateTotalScoreDisplay(dom.totalScoreDisplay, gameState.totalScore);
 
   updateObjectiveCounters(
     dom.objectiveCounters,
@@ -185,6 +196,8 @@ export function restartLevel() {
   hideGameOver();
 
   if (gameState.lives <= 0) {
+    // Game over - save high score if it's a new record
+    saveHighScore(gameState.totalScore);
     resetGame();
     updateLivesDisplay(dom.livesDisplay, gameState.lives);
     showMenu();
@@ -196,8 +209,12 @@ export function restartLevel() {
 }
 
 export function nextLevel() {
+  // Add current level score to total score
+  gameState.totalScore += gameState.score;
+  
   if (gameState.level >= LEVELS.length) {
-    // Show congratulations modal if last level completed
+    // Game completed - save high score
+    saveHighScore(gameState.totalScore);
     showElement(dom.congratsModal);
     hideElement(dom.nextLevelModal);
     return;

@@ -102,6 +102,7 @@ function init() {
     gameBoard: dom.gameBoard,
     movesDisplay: dom.movesDisplay,
     scoreDisplay: dom.scoreDisplay,
+    totalScoreDisplay: dom.totalScoreDisplay,
     restartContainer: dom.restartContainer,
     restartBtn: dom.confirmRestartBtn,
     nextLevelBtn: dom.confirmNextLevelBtn
