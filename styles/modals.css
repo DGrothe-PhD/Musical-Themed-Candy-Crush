@@ -54,36 +54,44 @@
     color: #27ae60;
 }
 
+#nextLevelModal p {
+    margin-bottom: 24px;
+}
+
 #confirmNextLevelBtn {
-    margin-top: 18px;
-    padding: 10px 28px;
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
     font-size: 1.1rem;
     background: #27ae60;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
 }
 
 #confirmNextLevelBtn:hover {
     background: #1e8449;
+    transform: translateY(-2px);
 }
 
 #cancelNextLevelBtn {
-    margin-left: 16px;
-    padding: 10px 28px;
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
     font-size: 1.1rem;
-    background: #aaa;
+    background: #95a5a6;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
 }
 
 #cancelNextLevelBtn:hover {
-    background: #888;
+    background: #7f8c8d;
+    transform: translateY(-2px);
 }
 
 #nextLevelBtn { display: none !important; }
@@ -97,36 +105,44 @@
     color: #2980b9;
 }
 
+#restartLevelModal p {
+    margin-bottom: 24px;
+}
+
 #confirmRestartBtn {
-    margin-top: 18px;
-    padding: 10px 28px;
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
     font-size: 1.1rem;
     background: #2980b9;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
 }
 
 #confirmRestartBtn:hover {
     background: #1c5a8a;
+    transform: translateY(-2px);
 }
 
 #cancelRestartBtn {
-    margin-left: 16px;
-    padding: 10px 28px;
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
     font-size: 1.1rem;
-    background: #aaa;
+    background: #95a5a6;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
 }
 
 #cancelRestartBtn:hover {
-    background: #888;
+    background: #7f8c8d;
+    transform: translateY(-2px);
 }
 #restartContainer { display: none !important; }
 
@@ -139,18 +155,92 @@
     color: #c0392b;
 }
 
+#gameOverModal p {
+    margin-bottom: 24px;
+}
+
 #gameOverRestartBtn {
-    margin-top: 18px;
-    padding: 10px 28px;
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
     font-size: 1.1rem;
     background: #c0392b;
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
 }
 
 #gameOverRestartBtn:hover {
     background: #a93226;
+    transform: translateY(-2px);
+}
+
+#gameOverHomeBtn {
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    background: #95a5a6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
+}
+
+#gameOverHomeBtn:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
+}
+
+/* Congratulations Modal */
+#congratsModal .modal-content {
+    text-align: center;
+}
+
+#congratsModal h2 {
+    margin-bottom: 12px;
+    color: #6c5ce7;
+}
+
+#congratsModal p {
+    margin-bottom: 16px;
+}
+
+#congratsPlayAgainBtn {
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    background: #6c5ce7;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
+}
+
+#congratsPlayAgainBtn:hover {
+    background: #5849c7;
+    transform: translateY(-2px);
+}
+
+#congratsHomeBtn {
+    margin: 20px 8px 8px 8px;
+    padding: 12px 32px;
+    font-size: 1.1rem;
+    background: #95a5a6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-width: 120px;
+}
+
+#congratsHomeBtn:hover {
+    background: #7f8c8d;
+    transform: translateY(-2px);
 }
