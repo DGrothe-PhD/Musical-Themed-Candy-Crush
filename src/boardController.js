@@ -82,11 +82,13 @@ async function swapAndCheckMatch(sourceCell, targetCell) {
 async function resolveAllMatchesAndDrop() {
   let matches = findMatches(gameBoard, BOARD_SIZE);
   let scoreGained = 0;
+  let chainCount = 0;
   const config = getLevelConfig(gameState.level);
   const matchedCounts = {};
   config.objectives.forEach(obj => { matchedCounts[obj.label] = 0; });
 
   while (matches.length > 0) {
+    chainCount++;
     for (const group of matches) {
       const matchScore = scoreForMatch(group.length);
       scoreGained += matchScore;
@@ -98,6 +100,14 @@ async function resolveAllMatchesAndDrop() {
         });
       }
     }
+
+    const comboLevel = getComboLevel(matches, chainCount);
+    const comboBonus = getComboBonus(matches, chainCount);
+    if (comboBonus > 0) {
+      scoreGained += comboBonus;
+      showScorePopup(comboBonus, matches.flat(), 'combo', comboLevel);
+    }
+
     await wait(250); // Animation delay
     for (const group of matches) {
       for (const cell of group) {
@@ -158,12 +168,32 @@ function wait(ms) {
   return new Promise(res => setTimeout(res, ms));
 }
 
-function showScorePopup(points, cells) {
+function getComboLevel(matches, chainCount) {
+  return Math.max(matches.length, chainCount);
+}
+
+function getComboBonus(matches, chainCount) {
+  let bonus = 0;
+
+  if (matches.length > 1) {
+    bonus += (matches.length - 1) * 20;
+  }
+
+  if (chainCount > 1) {
+    bonus += chainCount * 20;
+  }
+
+  return bonus;
+}
+
+function showScorePopup(points, cells, type = 'score', comboLevel = 1) {
   if (!gameBoard || !points || !cells?.length) return;
 
   const popup = document.createElement('div');
-  popup.className = 'score-popup';
-  popup.textContent = `+${points}`;
+  popup.className = `score-popup${type === 'combo' ? ' combo-popup' : ''}`;
+  popup.textContent = type === 'combo'
+    ? `Combo x${comboLevel} +${points}`
+    : `+${points}`;
 
   const centerX = cells.reduce((sum, cell) => sum + cell.offsetLeft + (cell.offsetWidth / 2), 0) / cells.length;
   const centerY = cells.reduce((sum, cell) => sum + cell.offsetTop + (cell.offsetHeight / 2), 0) / cells.length;
