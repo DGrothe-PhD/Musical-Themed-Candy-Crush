@@ -88,7 +88,9 @@ async function resolveAllMatchesAndDrop() {
 
   while (matches.length > 0) {
     for (const group of matches) {
-      scoreGained += scoreForMatch(group.length);
+      const matchScore = scoreForMatch(group.length);
+      scoreGained += matchScore;
+      showScorePopup(matchScore, group);
       for (const cell of group) {
         cell.classList.add('matched');
         config.objectives.forEach(obj => {
@@ -154,4 +156,24 @@ function checkWinCondition(config) {
 
 function wait(ms) {
   return new Promise(res => setTimeout(res, ms));
+}
+
+function showScorePopup(points, cells) {
+  if (!gameBoard || !points || !cells?.length) return;
+
+  const popup = document.createElement('div');
+  popup.className = 'score-popup';
+  popup.textContent = `+${points}`;
+
+  const centerX = cells.reduce((sum, cell) => sum + cell.offsetLeft + (cell.offsetWidth / 2), 0) / cells.length;
+  const centerY = cells.reduce((sum, cell) => sum + cell.offsetTop + (cell.offsetHeight / 2), 0) / cells.length;
+
+  popup.style.left = `${centerX}px`;
+  popup.style.top = `${centerY}px`;
+
+  gameBoard.appendChild(popup);
+
+  window.setTimeout(() => {
+    popup.remove();
+  }, 700);
 }
