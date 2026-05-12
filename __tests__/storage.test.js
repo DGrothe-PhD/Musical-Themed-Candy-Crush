@@ -1,0 +1,51 @@
+// add tests to storage.js
+
+import { getHighScore, saveHighScore, getHighestLevel, saveHighestLevel } from '../src/storage.js';
+
+describe('storage.js', () => {
+  beforeEach(() => {
+    localStorage.clear();
+  });
+
+  test('getHighScore returns 0 if no score saved', () => {
+    expect(getHighScore()).toBe(0);
+  });
+
+  test('saveHighScore saves a new high score', () => {
+    expect(saveHighScore(100)).toBe(true);
+    expect(getHighScore()).toBe(100);
+  });
+
+  test('saveHighScore does not update if score is lower', () => {
+    saveHighScore(100);
+    expect(saveHighScore(50)).toBe(false);
+    expect(getHighScore()).toBe(100);
+  });
+
+  test('getHighestLevel returns 0 if no level saved', () => {
+    expect(getHighestLevel()).toBe(0);
+  });
+
+  test('saveHighestLevel saves a new highest level', () => {
+    expect(saveHighestLevel(5)).toBe(true);
+    expect(getHighestLevel()).toBe(5);
+  });
+
+  test('saveHighestLevel does not update if level is lower', () => {
+    saveHighestLevel(5);
+    expect(saveHighestLevel(3)).toBe(false);
+    expect(getHighestLevel()).toBe(5);
+  });
+
+  test('saveHighScore updates localStorage correctly', () => {
+    saveHighScore(150);
+    const storedData = JSON.parse(localStorage.getItem('musicalMatchSaga'));
+    expect(storedData.highScore).toBe(150);
+  });
+
+  test('saveHighestLevel updates localStorage correctly', () => {
+    saveHighestLevel(10);
+    const storedData = JSON.parse(localStorage.getItem('musicalMatchSaga'));
+    expect(storedData.highestLevel).toBe(10);
+  });    
+});
