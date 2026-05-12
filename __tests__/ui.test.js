@@ -1,7 +1,7 @@
 // ui.test.js - Unit tests for ui.js
 // Add your tests here
 
-import { updateScore, updateLevel, updateTimer, showGameOver, hideGameOver, updateObjectiveCounters, updateMovesDisplay, updateLivesDisplay, updateScoreDisplay, updateTimerDisplay, showMenuPage } from '../src/ui.js';
+import { updateScore, updateLevel, updateTimer, showGameOver, hideGameOver, updateObjectiveCounters, updateMovesDisplay, updateLivesDisplay, updateScoreDisplay, updateTimerDisplay, showMenuPage, updateHighScoreDisplay, updateTotalScoreDisplay } from '../src/ui.js';
 
 describe('UI functions', () => {
   let scoreElement;
@@ -131,36 +131,53 @@ describe('UI functions', () => {
     expect(timerDisplay.textContent).toBe('Time: 30s');
   });
   
-  test('showMenuPage are hidden/shown as expected for initial states', () => {
-      const movesDisplay = document.createElement('div');
-      const scoreDisplay = document.createElement('div');
-      const timerDisplay = document.createElement('div');
-      const livesDisplay = document.createElement('div');
-      const restartContainer = document.createElement('div');
-      const heading = document.createElement('h1');
-      const menu = document.createElement('div');
-      const gameBoard = document.createElement('div');
-      document.body.appendChild(movesDisplay);
-      document.body.appendChild(scoreDisplay);
-      document.body.appendChild(timerDisplay);
-      document.body.appendChild(livesDisplay);
-      document.body.appendChild(restartContainer);
+  test('showMenuPage shows menu elements and hides game elements', () => {
+    document.body.innerHTML = `
+      <div id="game-board-container"></div>
+      <div id="score-moves-wrapper"></div>
+      <div id="levelDisplay"></div>
+      <div id="totalScoreDisplay"></div>
+    `;
 
-      document.body.innerHTML = `
-  <div id="game-board-container"></div>
-  <div id="score-moves-wrapper"></div>
-  <div id="levelDisplay"></div>
-`;
-      showMenuPage(heading, menu, gameBoard, movesDisplay, scoreDisplay, timerDisplay, livesDisplay, restartContainer)
+    const heading = document.createElement('h1');
+    const subtitle = document.createElement('h2');
+    const menu = document.createElement('div');
+    const gameBoard = document.createElement('div');
+    const movesDisplay = document.createElement('div');
+    const scoreDisplay = document.createElement('div');
+    const timerDisplay = document.createElement('div');
+    const livesDisplay = document.createElement('div');
+    const restartContainer = document.createElement('div');
 
-      expect(document.getElementById('score-moves-wrapper').classList.contains('hidden')).toBe(true);
-      expect(movesDisplay.classList.contains('hidden')).toBe(true);
-      expect(scoreDisplay.classList.contains('hidden')).toBe(true);
-      expect(timerDisplay.classList.contains('hidden')).toBe(true);
-      expect(document.getElementById('levelDisplay').classList.contains('hidden')).toBe(true);
-      expect(livesDisplay.classList.contains('hidden')).toBe(true);
-      expect(restartContainer.classList.contains('hidden')).toBe(true);
+    [heading, subtitle, menu, gameBoard, movesDisplay, scoreDisplay, timerDisplay, livesDisplay, restartContainer].forEach(el => {
+      el.classList.add('hidden');
+    });
 
+    showMenuPage(
+      heading,
+      subtitle,
+      menu,
+      gameBoard,
+      movesDisplay,
+      scoreDisplay,
+      timerDisplay,
+      livesDisplay,
+      restartContainer
+    );
+
+    expect(heading.classList.contains('hidden')).toBe(false);
+    expect(subtitle.classList.contains('hidden')).toBe(false);
+    expect(menu.classList.contains('hidden')).toBe(false);
+    expect(gameBoard.classList.contains('hidden')).toBe(true);
+    expect(movesDisplay.classList.contains('hidden')).toBe(true);
+    expect(scoreDisplay.classList.contains('hidden')).toBe(true);
+    expect(timerDisplay.classList.contains('hidden')).toBe(true);
+    expect(livesDisplay.classList.contains('hidden')).toBe(true);
+    expect(restartContainer.classList.contains('hidden')).toBe(true);
+    expect(document.getElementById('game-board-container').classList.contains('hidden')).toBe(true);
+    expect(document.getElementById('score-moves-wrapper').classList.contains('hidden')).toBe(true);
+    expect(document.getElementById('levelDisplay').classList.contains('hidden')).toBe(true);
+    expect(document.getElementById('totalScoreDisplay').classList.contains('hidden')).toBe(true);
   });
 
   test('timer warning class is toggled correctly based on timer value', () => {
@@ -173,5 +190,19 @@ describe('UI functions', () => {
     expect(timerDisplay.classList.contains('low-time')).toBe(true);
     updateTimerDisplay(timerDisplay, 0);
     expect(timerDisplay.classList.contains('low-time')).toBe(false); // No warning at 0
+  });
+
+  test('updateHighScoreDisplay updates the high score display text and shows it', () => {
+    const highScoreDisplay = document.createElement('div');
+    highScoreDisplay.classList.add('hidden');
+    updateHighScoreDisplay(highScoreDisplay, 200);
+    expect(highScoreDisplay.textContent).toBe('Best Score: 200');
+    expect(highScoreDisplay.classList.contains('hidden')).toBe(false);
+  });
+
+  test('updateTotalScoreDisplay updates the total score display text correctly', () => {
+    const totalScoreDisplay = document.createElement('div');
+    updateTotalScoreDisplay(totalScoreDisplay, 500);
+    expect(totalScoreDisplay.textContent).toBe('Total: 500');
   });
 });
