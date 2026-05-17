@@ -156,4 +156,19 @@ describe('timer', () => {
     expect(gameState.timerInterval).not.toBe(firstInterval);
     setTimeout(done, 1100);
   });
+
+  test('timer stops on gameover or level complete', (done) => {
+    const timerDisplay = {};
+    const handleLevelLose = jest.fn();
+    gameState.timer = 1;
+    gameState.movesLeft = 5;
+    gameState.levelComplete = false;
+    gameState.timerActive = true;
+    startTimer(gameState, timerDisplay, handleLevelLose);
+    gameState.levelComplete = true; // Simulate level complete
+    setTimeout(() => {
+      expect(handleLevelLose).not.toHaveBeenCalled();
+      done();
+    }, 1100);
+  });
 });
