@@ -136,7 +136,7 @@ async function resolveAllMatchesAndDrop() {
       showScorePopup(comboBonus, matches.flat(), 'combo', comboLevel);
     }
 
-    await wait(250); // Animation delay
+    await wait(80); // Reduced animation delay for faster match disappearance
     for (const group of matches) {
       for (const cell of group) {
         cell.textContent = '';
