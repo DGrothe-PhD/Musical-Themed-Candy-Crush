@@ -2,6 +2,14 @@
 
 # Musical Match Saga
 
+---
+## Recent Updates
+
+- Improved accessibility: visible focus styles, ARIA roles, and keyboard navigation.
+- Home page UI polish: vertically centered content on mobile, stylish and prominent title.
+- Ongoing testing and UI/UX refinements.
+---
+
 ![Game Screenshot](images/game-screenshot.png)
 
 A musical twist on the classic match-3 formula. Swap and match musical symbols, complete level objectives, and progress through timed challenges with limited moves and lives.
@@ -67,6 +75,9 @@ Drag or swipe adjacent tiles to create matches:
 - Move and timer limits
 - Mouse and touch/swipe controls
 - Responsive home screen and game HUD
+- Vertically centered home page content on mobile
+- Stylish, prominent game title
+- Accessible UI: visible focus styles, ARIA roles, keyboard navigation
 - Modal flows for restart, next level, game over, and congratulations
 - Modular JavaScript codebase for easier maintenance and extension
 - Jest-based unit and component test coverage across core modules
@@ -83,7 +94,6 @@ Drag or swipe adjacent tiles to create matches:
 ---
 
 ## Project Structure
-
 ```
 Musical-Themed-Candy-Crush/
 │
@@ -92,31 +102,50 @@ Musical-Themed-Candy-Crush/
 │   ├── boardController.js
 │   ├── boardEventHandlers.js
 │   ├── constants.js
+│   ├── domElements.js
 │   ├── events.js
 │   ├── game.js
+│   ├── gameController.js
 │   ├── gameState.js
-│   ├── levelOutcomes.js
 │   ├── interaction.js
+│   ├── levelOutcomes.js
 │   ├── levels.js
-│   ├── boardController.test.js
-│   ├── boardEventHandler.test.js
+│   ├── script.js
+│   ├── storage.js
+│   ├── timer.js
 │   ├── ui.js
-│   └── script.js
+│   └── utils.js
 │
 ├── __tests__/
 │   ├── board.test.js
+│   ├── boardController.test.js
+│   ├── boardEventHandler.test.js
 │   ├── events.test.js
 │   ├── game.test.js
-│   └── utils.test.js
-│   ├── levelOutcomes.test.js
-├── jest.config.js
+│   ├── gameController.test.js
+│   ├── gameState.test.js
 │   ├── interaction.test.js
+│   ├── levelOutcomes.test.js
 │   ├── levels.test.js
+│   ├── storage.test.js
 │   ├── timer.test.js
-│   └── ui.test.js
+│   ├── ui.test.js
+│   └── utils.test.js
 │
+├── styles/
+│   ├── base.css
+│   ├── game.css
+│   ├── home.css
+│   └── modals.css
+│
+├── images/
+│   └── game-screenshot.png
+│
+├── coverage/
 ├── index.html
-├── styles.css
+├── jest.config.js
+├── package.json
+├── package-lock.json
 ├── README.md
 └── ...
 ```
@@ -162,16 +191,19 @@ Aim for high coverage, but focus on meaningful tests for game logic, UI, and edg
 
 ## Known Issues
 
-- Accessibility can still be improved further, especially keyboard support and ARIA labelling.
-- The UI is responsive, but further polish and real-device testing would still improve the mobile experience.
+- Further accessibility testing and improvements are ongoing.
+- UI is responsive, but additional polish and real-device/mobile browser testing are planned.
+- Sound effects and music not yet implemented.
 - App packaging for Android / Play Store deployment has not yet been completed.
 
 ---
 
 ## Roadmap
 
-- Improve accessibility: ARIA labels, and contrast checks.
+- Improve accessibility: ARIA labels, contrast checks, and comprehensive keyboard/screen reader support.
 - Continue polishing the UI with improved animation, transitions, and mobile tuning.
+- Add more levels and increase gameplay variety.
+- Implement sound effects and background music.
 - Package the game for mobile using a wrapper such as Capacitor.
 - Prepare Play Store assets such as icons, screenshots, and store copy.
 - Gather user feedback and iterate on gameplay, feel, and usability.
