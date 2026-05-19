@@ -13,16 +13,16 @@
     <title>Musical Match Saga</title>
 </head>
 <body>
-    <div class="container">
-        <h1>
+    <div class="container" role="main" aria-label="Game Home Screen">
+        <h1 aria-label="Musical Match Saga">
             <span class="title-note">🎵</span>
             <span class="title-text">Musical Match Saga</span>
             <span class="title-note">🎶</span>
         </h1>
         <em class="subtitle">Start your musical match-three adventure!</em>
-        <div id="highScoreDisplay" class="high-score hidden">Best Score: 0</div>
-        <div id="highestLevelDisplay" class="highest-level hidden">Highest Level: 0</div>
-        <div class="menu">
+        <div id="highScoreDisplay" class="high-score hidden" aria-live="polite">Best Score: 0</div>
+        <div id="highestLevelDisplay" class="highest-level hidden" aria-live="polite">Highest Level: 0</div>
+        <div class="menu" role="navigation" aria-label="Main Menu">
             <button id="playBtn">Play Game</button>
             <button id="continueBtn" class="hidden">Continue Game</button>
             <button id="howToPlayBtn">How to Play</button>
@@ -31,17 +31,17 @@
         <div id="game-board-container" class="hidden">
             <div id="score-moves-wrapper">
                 <div class="top-bar-custom">
-                    <div id="levelDisplay" class="hidden level-center">LEVEL 1</div>
-                    <div id="livesDisplay"><span id="livesCount">5</span></div>
+                    <div id="levelDisplay" class="hidden level-center" aria-live="polite">LEVEL 1</div>
+                    <div id="livesDisplay" aria-live="polite"><span id="livesCount">5</span></div>
                     <button id="homeBtn" class="hidden home-btn">🏠 Home</button>
                 </div>
                 <div id="objective-counters"></div>
                 <div class="moves-score-timer-row">
-                    <div id="movesDisplay" class="hidden moves-horizontal">Moves: 0</div>
-                    <div id="scoreDisplay" class="hidden score-horizontal">Score: 0</div>
-                    <div id="timerDisplay" class="hidden timer-horizontal">Time: 0s</div>
+                    <div id="movesDisplay" class="hidden moves-horizontal" aria-live="polite">Moves: 0</div>
+                    <div id="scoreDisplay" class="hidden score-horizontal" aria-live="polite">Score: 0</div>
+                    <div id="timerDisplay" class="hidden timer-horizontal" aria-live="polite">Time: 0s</div>
                 </div>
-                <div id="totalScoreDisplay" class="hidden total-score">Total: 0</div>
+                <div id="totalScoreDisplay" class="hidden total-score" aria-live="polite">Total: 0</div>
                 </div>
             </div>
             <div id="gameBoard"></div>
@@ -51,8 +51,8 @@
                     <span id="closeRestartModal" class="close">&times;</span>
                     <h2>Restart Level?</h2>
                     <p>Are you sure you want to restart this level?</p>
-                    <button id="confirmRestartBtn">Yes, Restart</button>
-                    <button id="cancelRestartBtn">Cancel</button>
+                    <button id="confirmRestartBtn" aria-label="Yes, Restart">Yes, Restart</button>
+                    <button id="cancelRestartBtn" aria-label="Cancel">Cancel</button>
                 </div>
             </div>
             <!-- Next Level Modal -->
@@ -61,39 +61,39 @@
                     <span id="closeNextLevelModal" class="close">&times;</span>
                     <h2>Level Complete!</h2>
                     <p>Congratulations! Ready for the next challenge?</p>
-                    <button id="confirmNextLevelBtn">Next Level</button>
-                    <button id="cancelNextLevelBtn">Cancel</button>
+                    <button id="confirmNextLevelBtn" aria-label="Next Level">Next Level</button>
+                    <button id="cancelNextLevelBtn" aria-label="Cancel">Cancel</button>
                 </div>
             </div>
         </div>
         <!-- Game Over Modal -->
-        <div id="gameOverModal" class="modal hidden">
+        <div id="gameOverModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="gameOver">
             <div class="modal-content" style="text-align:center;">
-                <h2>Game Over</h2>
+                <h2 id="gameOver">Game Over</h2>
                 <p>You've run out of lives!</p>
                 <p id="gameOverFinalScore" style="font-size: 1.3em; font-weight: 600; color: #6c5ce7; margin: 15px 0;">Total Score: 0</p>
-                <button id="gameOverPlayAgainBtn">Play Again</button>
-                <button id="gameOverHomeBtn">Home</button>
+                <button id="gameOverPlayAgainBtn" aria-label="Play Again">Play Again</button>
+                <button id="gameOverHomeBtn" aria-label="Home">Home</button>
             </div>
         </div>
 
         <!-- Congratulations Modal (Game Complete) -->
-        <div id="congratsModal" class="modal hidden">
+        <div id="congratsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="congrats">
             <div class="modal-content" style="text-align:center;">
                 <h2>Congratulations!</h2>
                 <p>You have completed all levels of Musical Match Saga!</p>
                 <p id="congratsFinalScore" style="font-size: 1.3em; font-weight: 600; color: #6c5ce7; margin: 15px 0;">Total Score: 0</p>
                 <p>Would you like to play again or go back to the home screen?</p>
-                <button id="congratsPlayAgainBtn">Play Again</button>
-                <button id="congratsHomeBtn">Home</button>
+                <button id="congratsPlayAgainBtn" aria-label="Play Again">Play Again</button>
+                <button id="congratsHomeBtn" aria-label="Home">Home</button>
             </div>
         </div>
 
         <!-- How to Play Modal -->
-        <div id="howToPlayModal" class="modal hidden">
+        <div id="howToPlayModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="howToPlay">
             <div class="modal-content how-to-play-content">
-                <span id="closeHowToPlay" class="close">&times;</span>
-                <h2>How to Play 🎵</h2>
+                <span id="closeHowToPlay" class="close" aria-label="Close">&times;</span>
+                <h2 id="howToPlay">How to Play 🎵</h2>
                 <p class="how-to-play-intro">Match musical symbols, hit your objectives, and score as highly as you can before time or moves run out.</p>
 
                 <ul class="how-to-play-list">
