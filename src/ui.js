@@ -31,7 +31,7 @@ export function updateScoreDisplay(scoreDisplay, score) {
 
 export function updateTotalScoreDisplay(totalScoreDisplay, totalScore) {
   if (totalScoreDisplay) {
-    totalScoreDisplay.textContent = `Total: ${totalScore}`;
+    totalScoreDisplay.textContent = `Total Score: ${totalScore}`;
   }
 }
 
