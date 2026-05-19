@@ -1,9 +1,17 @@
 /* --- MENU/HOME STYLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 .container {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 18px;
+}
+
+@media (max-width: 600px) {
+    .container {
+        min-height: 100vh;
+        justify-content: center;
+    }
 }
 
 h1 {
@@ -12,10 +20,13 @@ h1 {
     align-items: center;
     gap: 0.2rem;
     text-align: center;
-    font-size: clamp(1.8rem, 5vw, 2.4rem);
-    margin: 0 auto;
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    margin: 40px auto 0 auto;
     padding-bottom: 10px;
     line-height: 1.1;
+    font-family: 'Pacifico';
+    letter-spacing: 1.5px;
+    color: #6c5ce7;
 }
 
 .menu {
