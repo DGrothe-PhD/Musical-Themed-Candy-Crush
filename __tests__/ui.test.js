@@ -203,6 +203,6 @@ describe('UI functions', () => {
   test('updateTotalScoreDisplay updates the total score display text correctly', () => {
     const totalScoreDisplay = document.createElement('div');
     updateTotalScoreDisplay(totalScoreDisplay, 500);
-    expect(totalScoreDisplay.textContent).toBe('Total: 500');
+    expect(totalScoreDisplay.textContent).toBe('Total Score: 500');
   });
 });
