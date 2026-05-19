@@ -315,6 +315,9 @@
 /* Mobile: Full-screen game layout */
 
 @media (max-width: 767px) {
+        #totalScoreDisplay {
+            margin-bottom: 0 !important;
+        }
     body {
         align-items: stretch;
     }
