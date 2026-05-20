@@ -20,10 +20,10 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background: linear-gradient(180deg, #ffffff 0%, #f0edff 100%);
+  border: 2px solid #cfc4ff;
   margin: auto;
   padding: 32px 24px 24px 24px;
-  border: 2px solid #888;
   border-radius: 16px;
   width: 90vw;
   max-width: 400px;
@@ -107,11 +107,11 @@
   text-align: center;
 }
 
-#confirmHomeBtn, #cancelHomeBtn,
-#confirmNextLevelBtn, #cancelNextLevelBtn,
-#confirmRestartBtn, #cancelRestartBtn,
-#gameOverRestartBtn, #gameOverHomeBtn,
-#congratsPlayAgainBtn, #congratsHomeBtn {
+#confirmHomeBtn,
+#confirmNextLevelBtn,
+#confirmRestartBtn,
+#gameOverRestartBtn,
+#congratsPlayAgainBtn {
   margin: 20px 8px 8px 8px;
   padding: 12px 32px;
   font-size: 1.1rem;
@@ -125,35 +125,46 @@
 
 #confirmHomeBtn { background: #6c5ce7; }
 #confirmHomeBtn:hover { background: #5849c7; transform: translateY(-2px); }
-#cancelHomeBtn { background: #95a5a6; }
-#cancelHomeBtn:hover { background: #7f8c8d; transform: translateY(-2px); }
 
-#nextLevelModal h2 { margin-bottom: 12px; color: #27ae60; }
 #nextLevelModal p { margin-bottom: 24px; }
-#confirmNextLevelBtn { background: #27ae60; }
-#confirmNextLevelBtn:hover { background: #1e8449; transform: translateY(-2px); }
-#cancelNextLevelBtn { background: #95a5a6; }
-#cancelNextLevelBtn:hover { background: #7f8c8d; transform: translateY(-2px); }
 #nextLevelBtn { display: none !important; }
 
-#restartLevelModal h2 { margin-bottom: 12px; color: #2980b9; }
+#nextLevelModal h2 { margin-bottom: 12px; color: #6c5ce7; }
+#confirmNextLevelBtn { background: #6c5ce7; }
+#confirmNextLevelBtn:hover { background: #5849c7; transform: translateY(-2px); }
+
+#restartLevelModal h2 { margin-bottom: 12px; color: #6c5ce7; }
 #restartLevelModal p { margin-bottom: 24px; }
-#confirmRestartBtn { background: #2980b9; }
-#confirmRestartBtn:hover { background: #1c5a8a; transform: translateY(-2px); }
-#cancelRestartBtn { background: #95a5a6; }
-#cancelRestartBtn:hover { background: #7f8c8d; transform: translateY(-2px); }
+#confirmRestartBtn { background: #6c5ce7; }
+#confirmRestartBtn:hover { background: #5849c7; transform: translateY(-2px); }
 #restartContainer { display: none !important; }
 
-#gameOverModal h2 { margin-bottom: 12px; color: #c0392b; }
+#gameOverModal h2 { margin-bottom: 12px; color:  #6c5ce7;}
 #gameOverModal p { margin-bottom: 24px; }
-#gameOverRestartBtn { background: #c0392b; }
-#gameOverRestartBtn:hover { background: #a93226; transform: translateY(-2px); }
-#gameOverHomeBtn { background: #95a5a6; }
-#gameOverHomeBtn:hover { background: #7f8c8d; transform: translateY(-2px); }
+#gameOverRestartBtn { background: #6c5ce7; }
+#gameOverRestartBtn:hover { background: #5849c7; transform: translateY(-2px); }
+
 
 #congratsModal h2 { margin-bottom: 12px; color: #6c5ce7; }
 #congratsModal p { margin-bottom: 16px; }
 #congratsPlayAgainBtn { background: #6c5ce7; }
 #congratsPlayAgainBtn:hover { background: #5849c7; transform: translateY(-2px); }
-#congratsHomeBtn { background: #95a5a6; }
-#congratsHomeBtn:hover { background: #7f8c8d; transform: translateY(-2px); }
+
+#cancelHomeBtn,
+#cancelNextLevelBtn,
+#cancelRestartBtn,
+#gameOverHomeBtn,
+#congratsHomeBtn {
+  background: transparent;
+  border: 2px solid #6c5ce7;
+  color: #6c5ce7;
+}
+
+#cancelHomeBtn:hover,
+#cancelNextLevelBtn:hover,
+#cancelRestartBtn:hover,
+#gameOverHomeBtn:hover,
+#congratsHomeBtn:hover {
+  background: #f0edff;
+  transform: translateY(-2px);
+}
