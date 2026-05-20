@@ -6,9 +6,6 @@
 html {
     box-sizing: border-box;
 }
-*, *::before, *::after {
-    box-sizing: inherit;
-}
 
 /* 2. Body Layout */
 body {
@@ -17,6 +14,13 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 /* 3. Links */
@@ -55,13 +59,10 @@ a:focus {
 /* Hide scrollbars on mobile for body and main containers */
 
 @media (max-width: 767px) {
-    body,
-    .container,
-    #game-board-container {
-        min-height: 100dvh;
-        height: 100dvh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+    body {
+        display: block;
+        min-height: 100vh;
+        margin: 0;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none;    /* Firefox */
     }
