@@ -1,5 +1,6 @@
 // Level configuration and level-related logic
 export const LEVELS = [
+  // Level 1: Intro - two objectives, simple
   {
     moves: 20,
     objectives: [
@@ -10,6 +11,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎺', '🥁', '🎷', '🎵']
   },
+  // Level 2: Three objectives, moderate
   {
     moves: 20,
     objectives: [
@@ -21,6 +23,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎹', '🎷', '🎵']
   },
+  // Level 3: Three objectives, moderate
   {
     moves: 20,
     objectives: [
@@ -32,6 +35,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎻', '🥁', '🎵']
   },
+  // Level 4: Three objectives, new symbol
   {
     moves: 20,
     objectives: [
@@ -43,7 +47,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎻', '🎹', '🎺']
   },
-  // Level 4: Multi-objective, higher counts
+  // Level 5: Multi-objective, higher counts
   {
     moves: 32,
     objectives: [
@@ -55,7 +59,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎺', '🥁', '🎵']
   },
-  // Level 5: Distractor symbol, higher counts
+  // Level 6: Distractor symbol, higher counts
   {
     moves: 34,
     objectives: [
@@ -66,7 +70,7 @@ export const LEVELS = [
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🎵', '🎻', '🎹', '🎷']
   },
-  // Level 6: Three objectives, lower moves
+  // Level 7: Three objectives, lower moves
   {
     moves: 28,
     objectives: [
@@ -77,34 +81,6 @@ export const LEVELS = [
     timer: 100,
     winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
     distractors: ['🥁', '🎵', '🎺']
-  },
-  // Level 7: High count, two objectives
-  {
-    moves: 36,
-    objectives: [
-      { symbol: '🎺', label: 'trumpet', count: 18 },
-      { symbol: '🎵', label: 'musicalNote', count: 10 }
-    ],
-    timer: 120,
-    winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
-    distractors: ['🎻', '🎹', '🥁', '🎷']
-  },
-
-  // Level 8: Combo challenge (all symbols, higher counts)
-  {
-    moves: 40,
-    objectives: [
-      { symbol: '🎻', label: 'violin', count: 10 },
-      { symbol: '🎹', label: 'piano', count: 10 },
-      { symbol: '🎺', label: 'trumpet', count: 10 },
-      { symbol: '🥁', label: 'drum', count: 10 },
-      { symbol: '🎷', label: 'saxophone', count: 10 },
-      { symbol: '🎵', label: 'musicalNote', count: 10 }
-    ],
-    timer: 140,
-    winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
-    comboChallenge: true,
-    distractors: []
   },
 
   // Level 9: Timed rush with distractors
