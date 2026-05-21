@@ -83,7 +83,7 @@ export const LEVELS = [
     distractors: ['🥁', '🎵', '🎺']
   },
 
-  // Level 9: Timed rush with distractors
+  // Level 8: Timed rush with distractors
   {
     moves: 24,
     objectives: [
@@ -97,9 +97,25 @@ export const LEVELS = [
     note: 'Short timer, more distractors, fast-paced.'
   },
 
+  // Level 9: Large Musical Mix
+  {
+    moves: 30,
+    objectives: [
+      { symbol: '🎻', label: 'violin', count: 12 },
+      { symbol: '🎹', label: 'piano', count: 12 },
+      { symbol: '🎷', label: 'saxophone', count: 12 },
+      { symbol: '🎵', label: 'musicalNote', count: 12 }
+    ],
+    timer: 120,
+    winCondition: (state) => state.objectives.every(obj => state[obj.label + 'Left'] === 0),
+    distractors: [],
+    comboChallenge: true,
+    note: 'All symbols, high counts, all distractors. The ultimate test!'
+  },
+
   // Level 10: Ultimate musical mix
   {
-    moves: 45,
+    moves: 40,
     objectives: [
       { symbol: '🎻', label: 'violin', count: 12 },
       { symbol: '🎹', label: 'piano', count: 12 },
