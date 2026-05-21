@@ -1,382 +1,549 @@
 /* =========================
-   HOME & MENU STYLES
+   BASE & IMPORTS
    ========================= */
-
+ 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
-.home-active.container h1 {
-  font-family: 'Pacifico', cursive;
-  padding-top: 32px;
-}
-
+ 
+/* =========================
+   CONTAINER
+   ========================= */
+ 
 .container {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 18px;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* Only home screen gets top margin/padding */
+ 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+ 
 .home-active.container {
-  background: linear-gradient(to bottom, #ede7fa 0%, #e4dcf7 100%);
-  border-radius: 24px;
-  box-shadow: 0 4px 32px rgba(108, 92, 231, 0.08);
+  background: linear-gradient(160deg, #ede7fa 0%, #ddd0f7 50%, #e4dcf7 100%);
   margin: 0 auto;
+  width: 100%;
   max-width: 420px;
-  padding: 0;
+  min-height: 100dvh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: env(safe-area-inset-top, 0px) 16px env(safe-area-inset-bottom, 24px) 16px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
+ 
 .container.game-active {
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background: none !important;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  background: none;
+}
+ 
+/* =========================
+   HOME TOP SECTION
+   ========================= */
+ 
+.home-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 48px;
+  padding-bottom: 24px;
+  flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-  .container {
-    min-height: 100dvh;
-    height: 100dvh;
-    justify-content: flex-start;
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    max-width: 100vw;
-    padding: 4px 0 4px 0;
-    overflow-y: auto;
-    gap: 8px;
-  }
-  .container.game-active {
-    margin: 0 !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    background: none !important;
-  }
-  #playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
-    max-width: 98vw;
-    width: 98vw;
-    font-size: 0.95rem;
-    padding: 8px 0;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    border-radius: 6px;
-  }
-  .menu {
-    gap: 4px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-  }
-  h1 {
-    margin-top: 0 !important;
-    margin-bottom: 4px;
-    font-size: clamp(1.1rem, 6vw, 1.5rem);
-    padding-bottom: 2px;
-    padding-top: 0 !important;
-  }
-  .subtitle {
-    font-size: 0.95em;
-    margin-bottom: 8px;
-  }
-  #highScoreDisplay, #highestLevelDisplay {
-    font-size: 0.95rem;
-    padding: 6px 8px;
-    margin: 6px auto;
-    border-radius: 12px;
-  }
+.title-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-@media (max-width: 400px) {
-  #playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
-    font-size: 0.85rem;
-    padding: 5px 0;
-    border-radius: 5px;
-  }
-  h1 {
-    font-size: 1.1rem;
-    margin-top: 4px;
-    margin-bottom: 2px;
-    padding-bottom: 1px;
-  }
-  .subtitle {
-    font-size: 0.85em;
-    margin-bottom: 4px;
-  }
-  #highScoreDisplay, #highestLevelDisplay {
-    font-size: 0.85rem;
-    padding: 4px 6px;
-    margin: 4px auto;
-    border-radius: 8px;
-  }
-  .menu {
-    gap: 2px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-  }
+.subtitle {
+  font-size: 1rem;
+  color: #7057b0;
+  margin: 0 auto;
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  padding: 0 8px;
 }
 
-@media (max-width: 800px) {
-  #playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
-    max-width: 99vw;
-    width: 99vw;
-    font-size: 1rem;
-    padding: 12px 0;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-  }
-  .menu {
-    gap: 8px;
-  }
+/* =========================
+   HOME BOTTOM SECTION
+   ========================= */
+ 
+.home-bottom {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 12px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
-@media (max-width: 400px) {
-  #playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
-    font-size: 0.95rem;
-    padding: 10px 0;
-  }
+.score-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
 }
 
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+ 
 h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.2rem;
+  gap: 0.3rem;
   text-align: center;
-  font-size: clamp(2.2rem, 7vw, 3.2rem);
-  margin: 0 auto 0 auto;
-  padding-bottom: 10px;
-  padding-top: 0;
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
   line-height: 1.1;
-  font-family: 'Pacifico';
   letter-spacing: 1.5px;
   color: #6c5ce7;
-  padding-left: 18px;
-  padding-right: 18px;
-}
-
-@media (max-width: 600px) {
-  h1 {
-    padding-left: 8vw;
-    padding-right: 8vw;
-    gap: 0.5rem;
-  }
-}
-
-@media (max-width: 400px) {
-  h1 {
-    padding-left: 4vw;
-    padding-right: 4vw;
-    gap: 0.35rem;
-  }
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
+  margin: 0 auto 24px;
+  padding: 0 12px;
   width: 100%;
-  margin-top: 20px;
-}
+  box-sizing: border-box;
 
-/* Fade-in animation for container */
-.container {
-  animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
+ 
+.home-active.container h1 {
+  padding-top: 0;
 }
-
+ 
 .title-note {
-  font-size: 0.8em;
+  font-size: 0.75em;
   line-height: 1;
+  flex-shrink: 0;
 }
-
-/* =========================
-   TITLE & SCORE DISPLAYS
-   ========================= */
-
+ 
 .title-text {
   display: inline-block;
   font-weight: 700;
   letter-spacing: 0.5px;
   font-size: 1.2em;
 }
-
+ 
 .subtitle {
   font-size: 1rem;
-  color: #555;
-  margin: 0 auto;
+  color: #7057b0;
+  margin: 0 auto 20px;
   text-align: center;
-  margin-bottom: 16px;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  padding: 0 8px;
 }
-
-#highScoreDisplay {
-  font-size: 1.1rem;
-  font-weight: 600;
+ 
+/* =========================
+   SCORE DISPLAYS
+   ========================= */
+ 
+#highScoreDisplay,
+#highestLevelDisplay {
+  font-size: 1.05rem;
+  font-weight: 700;
   color: #6c5ce7;
   text-align: center;
   padding: 12px 20px;
-  background: linear-gradient(135deg, #f3f3fa 0%, #e6eaff 100%);
-  border: 2px solid #d0d0f0;
+  margin: 6px auto;
+  width: 75%;
+  max-width: 280px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(108, 92, 231, 0.2);
   border-radius: 20px;
-  margin: 10px auto;
-  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.1);
+  box-shadow: 0 2px 12px rgba(108, 92, 231, 0.1);
+  backdrop-filter: blur(4px);
+  box-sizing: border-box;
 }
-
+ 
 #highestLevelDisplay {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #5c6ce7;
-  text-align: center;
-  padding: 12px 20px;
-  background: linear-gradient(135deg, #f8f3fa 0%, #ffe6ea 100%);
-  border: 2px solid #d0d0f0;
-  border-radius: 20px;
-  margin: 10px auto;
-  box-shadow: 0 2px 8px rgba(92, 108, 231, 0.1);
+  color: #9c5ce7;
+  background: rgba(255, 240, 255, 0.6);
+  border-color: rgba(156, 92, 231, 0.2);
 }
-
+ 
 /* =========================
-   MENU BUTTONS
+   MENU
    ========================= */
-
-#playBtn, #howToPlayBtn, #continueBtn, #restartGameBtn {
-  background-color: slateblue;
+ 
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ 
+/* =========================
+   BUTTONS
+   ========================= */
+ 
+#playBtn,
+#howToPlayBtn,
+#continueBtn,
+#restartGameBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  width: 100%;
+  max-width: 360px;
+  padding: 16px 24px;
+  margin: 0 auto;
   border: none;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 700;
   color: white;
+  background: linear-gradient(90deg, #6c5ce7 0%, #a084ee 100%);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(108, 92, 231, 0.3);
+  transition: background 0.25s, transform 0.12s, box-shadow 0.2s;
   text-align: center;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7em;
-  font-size: 16px;
-  padding: 15px 35px;
-  width: 100%;
-  max-width: 280px;
-  border-radius: 8px;
-  margin: 0 auto 12px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.1s, box-shadow 0.2s;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  letter-spacing: 0.02em;
 }
-
-#playBtn {
-  background: linear-gradient(90deg, #8f5cff 0%, #6c5ce7 100%);
-  font-size: 1.18rem;
-  font-weight: 700;
-  padding: 20px 40px;
-  max-width: 340px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 6px 18px rgba(108, 92, 231, 0.13);
-}
-
-#howToPlayBtn {
-  background: linear-gradient(90deg, #6c5ce7 0%, #a084ee 100%);
-  font-weight: 600;
-}
-
-#restartGameBtn {
-  background: linear-gradient(90deg, #ff7675 0%, #d63031 100%);
-  font-weight: 700;
-}
-
+ 
+/* Primary CTA buttons */
+#playBtn,
 #continueBtn {
-  background: linear-gradient(90deg, #6c5ce7 0%, #a084ee 100%);
-  font-size: 1.25rem;
-  font-weight: 700;
-  padding: 20px 40px;
-  max-width: 340px;
-  letter-spacing: 0.5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.7em;
-  box-shadow: 0 6px 18px rgba(108, 92, 231, 0.13);
+  font-size: 1.2rem;
+  padding: 18px 32px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(108, 92, 231, 0.35);
+  background: linear-gradient(90deg, #8f5cff 0%, #6c5ce7 100%);
 }
-
+ 
+/* Icons */
 #playBtn .menu-icon,
 #howToPlayBtn .menu-icon,
 #restartGameBtn .menu-icon {
-  font-size: 1.4em;
-  margin-right: 0.2em;
+  font-size: 1.3em;
 }
-
+ 
 #continueBtn .continue-icon {
-  font-size: 1.5em;
-  margin-right: 0.2em;
+  font-size: 1.4em;
 }
-
-#playBtn:hover, #howToPlayBtn:hover, #continueBtn:hover, #restartGameBtn:hover {
-  background-color: #6854b8;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
-}
-
-#playBtn:active, #howToPlayBtn:active, #continueBtn:active, #restartGameBtn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-}
-
-#restartGameBtn {
-   background: linear-gradient(90deg, #6c5ce7 0%, #a084ee 100%);
-}
-
+ 
+/* Hover */
+#playBtn:hover,
+#howToPlayBtn:hover,
+#continueBtn:hover,
 #restartGameBtn:hover {
   background: linear-gradient(90deg, #5c4cd6 0%, #8f72dd 100%);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(108, 92, 231, 0.4);
 }
-
+ 
+/* Active */
+#playBtn:active,
+#howToPlayBtn:active,
+#continueBtn:active,
 #restartGameBtn:active {
   transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(108, 92, 231, 0.25);
 }
-
+ 
 /* =========================
-   RESPONSIVE & MEDIA QUERIES
+   RESPONSIVE — MOBILE SMALL
+   max-width: 400px
    ========================= */
-
-@media (min-width: 768px) {
-  .container {
-    border: none;
+ 
+@media (max-width: 400px) {
+  .home-active.container {
+    padding-left: 12px;
+    padding-right: 12px;
   }
-  #playBtn, #howToPlayBtn {
-    width: 40%;
+ 
+  h1 {
+    font-size: clamp(1.8rem, 9vw, 2.4rem);
+    margin-bottom: 4px;
+  }
+ 
+  .subtitle {
+    font-size: 0.85em;
+    margin-bottom: 12px;
+  }
+ 
+  #highScoreDisplay,
+  #highestLevelDisplay {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    margin: 4px auto;
+    width: 85%;
+    border-radius: 14px;
+  }
+ 
+  #playBtn,
+  #howToPlayBtn,
+  #continueBtn,
+  #restartGameBtn {
+    font-size: 0.95rem;
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+ 
+  .menu {
+    gap: 10px;
+  }
+ 
+  .home-bottom {
+    gap: 8px;
   }
 }
-
-@media (min-width: 500px) {
+ 
+/* =========================
+   RESPONSIVE — MOBILE
+   max-width: 600px
+   ========================= */
+ 
+@media (max-width: 600px) {
   .container {
-    padding: 30px;
+    min-height: 100dvh;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    max-width: 100vw;
+    overflow: hidden;
   }
-  #score-moves-wrapper {
-    padding: 12px 10px 14px;
+ 
+  .home-active.container {
+    max-width: 100vw;
+    justify-content: space-between;
   }
+ 
+  .container.game-active {
+    margin: 0;
+    padding: 0;
+    overflow-y: auto;
+  }
+ 
   h1 {
-    font-size: 2em;
-    gap: 0.35rem;
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    padding: 0 8vw;
   }
-  .title-note {
-    font-size: 0.9em;
+ 
+  .subtitle {
+    font-size: 0.95em;
+    margin-bottom: 16px;
   }
+ 
+  #highScoreDisplay,
+  #highestLevelDisplay {
+    width: 80%;
+    font-size: 0.95rem;
+    padding: 11px 16px;
+  }
+ 
+  #playBtn,
+  #howToPlayBtn,
+  #continueBtn,
+  #restartGameBtn {
+    max-width: 100%;
+    width: 100%;
+    font-size: 1rem;
+    padding: 16px 0;
+    border-radius: 12px;
+  }
+ 
+  #playBtn,
+  #continueBtn {
+    font-size: 1.15rem;
+    padding: 18px 0;
+  }
+ 
+  .menu {
+    gap: 10px;
+    width: 100%;
+  }
+ 
+  .home-bottom {
+    gap: 10px;
+    padding-bottom: 16px;
+  }
+ 
+  .home-top {
+    padding-top: 16px;
+  }
+}
+ 
+/* =========================
+   RESPONSIVE — TABLET
+   min-width: 601px, max-width: 1024px
+   ========================= */
+ 
+@media (min-width: 601px) and (max-width: 1024px) {
+  .home-active.container {
+    max-width: 480px;
+    padding: 32px 32px 40px;
+    border-radius: 24px;
+    min-height: auto;
+    height: auto;
+    margin: 40px auto;
+    box-shadow: 0 8px 40px rgba(108, 92, 231, 0.15);
+  }
+ 
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3rem);
+    margin-bottom: 10px;
+  }
+ 
+  .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 24px;
+  }
+ 
+  #highScoreDisplay,
+  #highestLevelDisplay {
+    width: 70%;
+    font-size: 1.05rem;
+    padding: 14px 24px;
+    margin: 8px auto;
+  }
+ 
+  #playBtn,
+  #howToPlayBtn,
+  #continueBtn,
+  #restartGameBtn {
+    max-width: 340px;
+    font-size: 1.05rem;
+    padding: 16px 32px;
+    border-radius: 14px;
+  }
+ 
+  #playBtn,
+  #continueBtn {
+    font-size: 1.25rem;
+    padding: 20px 40px;
+  }
+ 
+  .menu {
+    gap: 14px;
+    margin-top: 8px;
+  }
+ 
+  .home-bottom {
+    gap: 14px;
+  }
+ 
+  .home-top {
+    padding-top: 8px;
+  }
+}
+ 
+/* =========================
+   RESPONSIVE — DESKTOP
+   min-width: 1025px
+   ========================= */
+ 
+@media (min-width: 1025px) {
+  .home-active.container {
+    max-width: 480px;
+    padding: 48px 48px 56px;
+    border-radius: 28px;
+    min-height: auto;
+    height: auto;
+    margin: 60px auto;
+    box-shadow: 0 12px 56px rgba(108, 92, 231, 0.18);
+    justify-content: center;
+    gap: 24px;
+  }
+ 
+  h1 {
+    font-size: 3.2rem;
+    margin-bottom: 12px;
+  }
+ 
   .subtitle {
     font-size: 1.2em;
-    margin-bottom: 20px;
+    margin-bottom: 28px;
   }
-  #playBtn, #howToPlayBtn {
-    width: 70%;
-    max-width: none;
+ 
+  #highScoreDisplay,
+  #highestLevelDisplay {
+    width: 65%;
+    font-size: 1.1rem;
+    padding: 16px 28px;
+    margin: 8px auto;
+  }
+ 
+  #playBtn,
+  #howToPlayBtn,
+  #continueBtn,
+  #restartGameBtn {
+    max-width: 360px;
+    font-size: 1.1rem;
+    padding: 18px 40px;
+    border-radius: 16px;
+  }
+ 
+  #playBtn,
+  #continueBtn {
+    font-size: 1.3rem;
+    padding: 22px 48px;
+    border-radius: 18px;
+  }
+ 
+  .menu {
+    gap: 16px;
+    margin-top: 8px;
+  }
+ 
+  .home-bottom {
+    gap: 16px;
+  }
+ 
+  .home-top {
+    padding-top: 0;
+  }
+ 
+  /* Subtle hover lift on desktop */
+  #playBtn:hover,
+  #howToPlayBtn:hover,
+  #continueBtn:hover,
+  #restartGameBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(108, 92, 231, 0.45);
   }
 }
-
+ 
+/* =========================
+   DESKTOP BACKGROUND
+   Full page bg when container
+   is centered on large screens
+   ========================= */
+ 
+@media (min-width: 601px) {
+  body {
+    background: linear-gradient(135deg, #f0eaff 0%, #e8deff 50%, #ede0ff 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
