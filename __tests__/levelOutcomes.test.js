@@ -227,4 +227,52 @@ describe('levelOutcomes', () => {
     // Clean up
     document.body.removeChild(confirmNextLevelBtn); 
   });
+
+  test('handelLevelLose shows game over modal when lives reach 0', () => {
+    gameState.lives = 1; // Set lives to 1 before calling handleLevelLose
+
+    const gameOverModal = document.createElement('div');
+    gameOverModal.id = 'gameOverModal';
+    gameOverModal.classList.add('hidden');
+    document.body.appendChild(gameOverModal);
+
+    const restartContainer = document.createElement('div');
+    const restartBtn = document.createElement('button');
+    const nextLevelBtn = document.createElement('button');
+    restartContainer.classList.add('hidden');
+    restartBtn.classList.add('hidden');
+    nextLevelBtn.classList.remove('hidden');
+
+    handleLevelLose(restartContainer, restartBtn, nextLevelBtn);
+
+    expect(gameOverModal.classList.contains('hidden')).toBe(false);
+
+    // Clean up
+    document.body.removeChild(gameOverModal);
+  });
+
+  test('handelLevelWin updates total score and resets current score', () => {
+    gameState.level = LEVELS.length; // Set to final level
+    gameState.score = 150;
+    gameState.totalScore = 350;
+
+    const congratsModal = document.createElement('div');
+    congratsModal.id = 'congratsModal';
+    congratsModal.classList.add('modal', 'hidden');
+    document.body.appendChild(congratsModal);
+
+    const congratsFinalScore = document.createElement('div');
+    congratsFinalScore.id = 'congratsFinalScore';
+    document.body.appendChild(congratsFinalScore);
+
+    handleLevelWin();
+
+    expect(gameState.totalScore).toBe(500);
+    expect(gameState.score).toBe(0);
+    expect(congratsFinalScore.textContent).toBe('Total Score: 500');
+
+    // Clean up
+    document.body.removeChild(congratsModal);
+    document.body.removeChild(congratsFinalScore);
+  });
 });
