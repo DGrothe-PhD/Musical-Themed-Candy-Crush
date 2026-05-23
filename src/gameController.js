@@ -309,10 +309,21 @@ function restoreBoardState(boardState, config) {
   dom.gameBoard.innerHTML = '';
   
   // Recreate board from saved state
+  const symbolToClass = {
+    '🎻': 'cell-violin',
+    '🎹': 'cell-piano',
+    '🎺': 'cell-trumpet',
+    '🥁': 'cell-drum',
+    '🎷': 'cell-saxophone',
+    '🎵': 'cell-musicalnote'
+  };
   boardState.forEach((row, i) => {
     row.forEach((symbol, j) => {
       const cell = document.createElement('div');
       cell.classList.add('cell');
+      // Add symbol-specific class for background
+      const symbolClass = symbolToClass[symbol];
+      if (symbolClass) cell.classList.add(symbolClass);
       cell.textContent = symbol;
       cell.dataset.row = i;
       cell.dataset.col = j;
