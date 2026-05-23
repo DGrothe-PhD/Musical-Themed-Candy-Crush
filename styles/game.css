@@ -3,8 +3,7 @@
    ========================= */
 
 #game-board-container {
-  text-align: center;
-  background-color: transparent;
+  background: none;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -15,24 +14,25 @@
 }
 
 #game-board-wrapper {
-    background-color: #d8c7ec;
+    background-color: transparent;
 }
 
 #gameBoard {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1px;
-  width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  margin-top: 30px;
-  margin-bottom: 25px;
-  padding: 10px auto;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  gap: 4px;
+  width: min(90vw, 90vh, 420px);
+  height: min(90vw, 90vh, 420px);
+  margin: 30px auto 25px auto;
+  padding: 0;
   position: relative;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  background-color: transparent;
+  background-color: #fff;
+  border: 2px solid #d6c8f7;
+  border-radius: 22px;
 }
 
 .container.game-active {
@@ -47,7 +47,7 @@
   gap: 0;
   overflow: hidden;
   position: fixed;
-  background-color: #d8c7ec;
+  background: linear-gradient(180deg, #f6f6fa 0%, #ede0ff 60%, #e8deff 100%);
 }
 
 /* Hide home elements when game is active */
@@ -57,17 +57,37 @@
 }
 
 .cell {
-  width: calc((100% - 6px) / 7);
+  width: 100%;
+  height: 100%;
   display: flex;
-  aspect-ratio: 1;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  font-size: clamp(16px, 4vw, 24px);
+  font-size: clamp(16px, 3vw, 24px);
   touch-action: none;
   cursor: pointer;
-  border-radius: 6px;
-  background-color: #ececf3;
+  border-radius: 16px;
+  background-color: #fff;
+}
+
+/* Subtle, accessible symbol backgrounds */
+.cell-violin {
+  background: #ffe5ec;
+}
+.cell-piano {
+  background: #e5f0ff;
+}
+.cell-trumpet {
+  background: #fff9e5;
+}
+.cell-drum {
+  background: #e5fff0;
+}
+.cell-saxophone {
+  background: #f3e5ff;
+}
+.cell-musicalnote {
+  background: #f0f0ff;
 }
 
 .cell.selected {
