@@ -158,6 +158,12 @@
   background: transparent;
   border: 2px solid #6c5ce7;
   color: #6c5ce7;
+  border-radius: 14px;
+  padding: 12px 28px;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, transform 0.12s;
+  outline: none;
 }
 
 #cancelHomeBtn:hover,
@@ -166,5 +172,16 @@
 #gameOverHomeBtn:hover,
 #congratsHomeBtn:hover {
   background: #f0edff;
+  border-color: #8f72dd;
+  color: #5849c7;
   transform: translateY(-2px);
+}
+
+#cancelHomeBtn:focus,
+#cancelNextLevelBtn:focus,
+#cancelRestartBtn:focus,
+#gameOverHomeBtn:focus,
+#congratsHomeBtn:focus {
+  box-shadow: 0 0 0 3px #d1c4e9;
+  outline: none;
 }
