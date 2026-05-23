@@ -103,6 +103,16 @@ export function generateGameBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol,
         grid[row][col] = symbol;
         const cell = document.createElement('div');
         cell.className = 'cell';
+        // Add symbol-specific class for background
+        const symbolClass = {
+          '🎻': 'cell-violin',
+          '🎹': 'cell-piano',
+          '🎺': 'cell-trumpet',
+          '🥁': 'cell-drum',
+          '🎷': 'cell-saxophone',
+          '🎵': 'cell-musicalnote'
+        }[symbol];
+        if (symbolClass) cell.classList.add(symbolClass);
         cell.textContent = symbol;
         cell.draggable = true;
         cell.tabIndex = 0;
