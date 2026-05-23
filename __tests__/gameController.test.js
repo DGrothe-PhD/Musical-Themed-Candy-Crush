@@ -72,12 +72,12 @@ describe('gameController', () => {
     delete global.document.querySelector;
   });
 
-  it('removes game-active class from container', () => {
+  test('removes game-active class from container', () => {
     showMenu();
     expect(dom.container.classList.remove).toHaveBeenCalledWith('game-active');
   });
 
-  it('sets highScoreDisplay textContent', () => {
+  test('sets highScoreDisplay textContent', () => {
     showMenu();
     expect(dom.highScoreDisplay).toBeDefined();
   });
