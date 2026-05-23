@@ -10,7 +10,9 @@
 - Ongoing testing and UI/UX refinements.
 ---
 
-![Game Screenshot](images/game-screenshot.png)
+![Screenshot home](images/home-screen.jpg)
+![Screenshot continue](images/home-continue-screen.jpg)
+![Screenshot game](images/game-screen.jpg)
 
 A musical twist on the classic match-3 formula. Swap and match musical symbols, complete level objectives, and progress through timed challenges with limited moves and lives.
 
