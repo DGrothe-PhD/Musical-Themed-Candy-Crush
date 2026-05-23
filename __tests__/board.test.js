@@ -77,4 +77,39 @@ describe('board', () => {
     expect(hasPossibleMoves(gameBoard, BOARD_SIZE)).toBe(false);
   }); 
 
+  test('board rendering and cell classes are correct after generateGameBoard', () => {
+    const gameBoard = document.createElement('div');
+    generateGameBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol, hasPossibleMoves, () => {});
+    for (let i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) {
+      const cell = gameBoard.children[i];
+      expect(SYMBOLS).toContain(cell.textContent);
+      // Check that the correct class is applied based on the symbol
+      const symbolClassMap = {
+        '🎻': 'cell-violin',
+        '🎹': 'cell-piano',
+        '🎺': 'cell-trumpet',
+        '🥁': 'cell-drum',
+        '🎷': 'cell-saxophone',
+        '🎵': 'cell-musicalnote'
+      };
+      const expectedClass = symbolClassMap[cell.textContent];
+      if (expectedClass) {
+        expect(cell.classList.contains(expectedClass)).toBe(true);
+      }
+    }
+  });
+
+  test('cells have correct aria labels for accessibility', () => {
+    const gameBoard = document.createElement('div');    
+    generateGameBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol, hasPossibleMoves, () => {});
+    for (let row = 0; row < BOARD_SIZE; row++) {
+      for (let col = 0; col < BOARD_SIZE; col++) {
+        const idx = row * BOARD_SIZE + col;
+        const cell = gameBoard.children[idx];
+        const expectedLabel = `Game tile: ${cell.textContent}, row ${row + 1}, column ${col + 1}`;
+        expect(cell.getAttribute('aria-label')).toBe(expectedLabel);
+      }
+    }
+  });
+
 });
