@@ -171,6 +171,19 @@ export function reshuffleBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol, ha
   const allCells = getBoardCells(gameBoard);
   let symbols = allCells.map(cell => cell.textContent).filter(Boolean);
   let attempts = 0;
+  const symbolToClass = {
+    '🎻': 'cell-violin',
+    '🎹': 'cell-piano',
+    '🎺': 'cell-trumpet',
+    '🥁': 'cell-drum',
+    '🎷': 'cell-saxophone',
+    '🎵': 'cell-musicalnote'
+  };
+  function updateCellClass(cell) {
+    Object.values(symbolToClass).forEach(cls => cell.classList.remove(cls));
+    const symbolClass = symbolToClass[cell.textContent];
+    if (symbolClass) cell.classList.add(symbolClass);
+  }
   do {
     for (let i = symbols.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -178,6 +191,7 @@ export function reshuffleBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol, ha
     }
     allCells.forEach((cell, idx) => {
       cell.textContent = symbols[idx] || '';
+      updateCellClass(cell);
     });
     attempts++;
     if (attempts > 20) {
@@ -201,6 +215,19 @@ export function reshuffleBoard(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol, ha
 export function dropAndRefill(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol) {
   const grid = [];
   const allCells = getBoardCells(gameBoard);
+  const symbolToClass = {
+    '🎻': 'cell-violin',
+    '🎹': 'cell-piano',
+    '🎺': 'cell-trumpet',
+    '🥁': 'cell-drum',
+    '🎷': 'cell-saxophone',
+    '🎵': 'cell-musicalnote'
+  };
+  function updateCellClass(cell) {
+    Object.values(symbolToClass).forEach(cls => cell.classList.remove(cls));
+    const symbolClass = symbolToClass[cell.textContent];
+    if (symbolClass) cell.classList.add(symbolClass);
+  }
   for (let row = 0; row < BOARD_SIZE; row++) {
     grid[row] = [];
     for (let col = 0; col < BOARD_SIZE; col++) {
@@ -214,7 +241,9 @@ export function dropAndRefill(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol) {
         emptySpots++;
       } else if (emptySpots > 0) {
         grid[row + emptySpots][col].textContent = grid[row][col].textContent;
+        updateCellClass(grid[row + emptySpots][col]);
         grid[row][col].textContent = '';
+        updateCellClass(grid[row][col]);
       }
     }
     for (let row = 0; row < emptySpots; row++) {
@@ -224,6 +253,7 @@ export function dropAndRefill(gameBoard, BOARD_SIZE, SYMBOLS, getSafeSymbol) {
         col,
         SYMBOLS
       );
+      updateCellClass(grid[row][col]);
     }
   }
 }
